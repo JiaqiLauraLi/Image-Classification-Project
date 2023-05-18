@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Feedback{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<center>
+    <form method="post">
+        <label for="message">Your feedback: </label><br>
+        <input name="message">
+        <br>
+        <label for="handle">Your name or handle: </label><br>
+        <input name="handle">
+        <br>
+        <input type="submit" value="Submit form">
+    </form>
+  </center>
+  <br /> 
+  {% if thanks %}
+  <center>
+   Thank you for submitting feedback! To view our feedback summary, click here:
+   <form action="{{ url_for('feedbacksummary') }}">
+    <button class = "button1" type="submit">Summary</button>
+   </form>
+    <br /> 
+   Thank you for using our Webapp! To startover, click here:
+      <form action="{{ url_for('upload') }}">
+        <button class = "button" type="submit">Start Again!</button>
+       </form>
+    </center>
+  {% endif %}
+
+  {% if error %}
+  <center><br>Sorry, we are unable to upload your feedback. Please try again.<br /> 
+  <br /> 
+  Thank you for using our Webapp! To startover, click here:
+    <form action="{{ url_for('upload') }}">
+      <button class = "button" type="submit">Start Again!</button>
+     </form>
+  </center>
+  {% endif %}
+
+
+{% endblock %}
